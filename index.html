@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo MotoLab 125</title>
+    <style>
+        :root {
+            --primary-orange: #ff5722;
+            --secondary-orange: #ff7043;
+            --glow-orange: rgba(255, 87, 34, 0.35);
+            --bg-dark: #0f1015;
+            --card-bg: rgba(26, 29, 38, 0.85);
+            --border-color: rgba(255, 255, 255, 0.12);
+            --text-main: #ffffff;
+            --text-sub: #b0b5c1;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 87, 34, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(255, 112, 67, 0.08) 0%, transparent 40%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px 15px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 450px;
+            background: var(--card-bg);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 25px 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        h1 {
+            font-size: 22px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 5px;
+            background: linear-gradient(90deg, #ffffff, #e0e0e0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-title {
+            font-size: 14px;
+            color: var(--primary-orange);
+            text-align: center;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        /* VISTA 1: Lista de Motos (Solo Foto y Nombre) */
+        .catalog-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .moto-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .moto-card:hover, .moto-card:active {
+            transform: translateY(-3px) scale(1.01);
+            border-color: var(--primary-orange);
+            box-shadow: 0 8px 20px var(--glow-orange);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .moto-card img {
+            width: 90px;
+            height: 70px;
+            object-fit: contain;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 4px;
+        }
+
+        .moto-card h3 {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        /* VISTA 2: Detalle de la Moto (Oculto por defecto) */
+        .detail-view {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .btn-back {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-color);
+            color: var(--text-sub);
+            padding: 8px 14px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .detail-img {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 15px;
+            padding: 10px;
+        }
+
+        .detail-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .detail-price {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--primary-orange);
+            margin-bottom: 15px;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .spec-box {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 10px 5px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .spec-box span {
+            display: block;
+            font-size: 11px;
+            color: var(--text-sub);
+            margin-bottom: 2px;
+        }
+
+        .spec-box strong {
+            font-size: 13px;
+            color: #fff;
+        }
+
+        .detail-desc {
+            font-size: 13px;
+            color: var(--text-sub);
+            line-height: 1.5;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 14px;
+            border-radius: 12px;
+            border-left: 3px solid var(--primary-orange);
+            margin-bottom: 20px;
+        }
+
+        .btn-ws {
+            background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+            color: #fff;
+            padding: 14px;
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 6px 18px var(--glow-orange);
+            transition: transform 0.2s ease;
+        }
+
+        .btn-ws:active {
+            transform: scale(0.98);
+        }
+
+        footer {
+            margin-top: 25px;
+            text-align: center;
+            font-size: 11px;
+            color: #555c6e;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- VISTA DEL CATÁLOGO DE MOTOS -->
+        <div id="catalogView">
+            <h1>Catálogo de Motos</h1>
+            <p class="section-title">Motos por el momento</p>
+
+            <div class="catalog-grid">
+                <!-- Tarjeta 1 -->
+                <div class="moto-card" onclick="openDetail('cb125f')">
+                    <img src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=300" alt="Honda CB 125F">
+                    <h3>Honda CB 125F</h3>
+                </div>
+
+                <!-- Tarjeta 2 -->
+                <div class="moto-card" onclick="openDetail('nkd125')">
+                    <img src="https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=300" alt="AKT NKD 125">
+                    <h3>AKT NKD 125</h3>
+                </div>
+
+                <!-- Tarjeta 3 -->
+                <div class="moto-card" onclick="openDetail('boxer125')">
+                    <img src="https://images.unsplash.com/photo-1591637333184-19aa84b3e01f?w=300" alt="Bajaj Boxer CT 125">
+                    <h3>Bajaj Boxer CT 125</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- VISTA DE DETALLE DE LA MOTO -->
+        <div id="detailView" class="detail-view">
+            <button class="btn-back" onclick="closeDetail()">← Volver al catálogo</button>
+            
+            <img id="mImage" class="detail-img" src="" alt="Moto">
+            <h2 id="mTitle" class="detail-title"></h2>
+            <p id="mPrice" class="detail-price"></p>
+
+            <div class="specs-grid">
+                <div class="spec-box">
+                    <span>Cilindrada</span>
+                    <strong id="mCc"></strong>
+                </div>
+                <div class="spec-box">
+                    <span>Potencia</span>
+                    <strong id="mHp"></strong>
+                </div>
+                <div class="spec-box">
+                    <span>Torque</span>
+                    <strong id="mTorque"></strong>
+                </div>
+            </div>
+
+            <p id="mDesc" class="detail-desc"></p>
+
+            <a id="mWsLink" href="#" target="_blank" class="btn-ws">
+                📲 Consultar Disponibilidad
+            </a>
+        </div>
+
+        <footer>
+            Desarrollado por MigueProgrammer - © 2026
+        </footer>
+
+    </div>
+
+    <script>
+        // Datos técnicos de las motocicletas
+        const motosData = {
+            'cb125f': {
+                title: 'Honda CB 125F',
+                price: '$6.800.000 COP',
+                cc: '124.7 cc',
+                hp: '8.41 HP @ 7500 RPM',
+                torque: '9.6 Nm @ 5000 RPM',
+                image: 'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=600',
+                desc: 'Excelente opción urbana con gran eficiencia de combustible, diseño deportivo aerodinámico y el respaldo de durabilidad característico de Honda.'
+            },
+            'nkd125': {
+                title: 'AKT NKD 125',
+                price: '$5.490.000 COP',
+                cc: '124 cc',
+                hp: '10.34 HP @ 8000 RPM',
+                torque: '9.3 Nm @ 7000 RPM',
+                image: 'https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=600',
+                desc: 'La moto liviana más vendida para trabajo y ciudad. Destaca por su excelente relación peso-potencia, repuestos económicos y agilidad en el tráfico.'
+            },
+            'boxer125': {
+                title: 'Bajaj Boxer CT 125',
+                price: '$5.890.000 COP',
+                cc: '124.4 cc',
+                hp: '9.8 HP @ 7500 RPM',
+                torque: '10.9 Nm @ 5500 RPM',
+                image: 'https://images.unsplash.com/photo-1591637333184-19aa84b3e01f?w=300',
+                desc: 'Reina del trabajo pesado y ahorro de gasolina. Chasis robusto, suspensión reforzada para carga y un motor de alto rendimiento diseñado para jornadas duras.'
+            }
+        };
+
+        // Función para mostrar los detalles de la moto seleccionada
+        function openDetail(motoKey) {
+            const moto = motosData[motoKey];
+            if (!moto) return;
+
+            document.getElementById('mImage').src = moto.image;
+            document.getElementById('mTitle').innerText = moto.title;
+            document.getElementById('mPrice').innerText = moto.price;
+            document.getElementById('mCc').innerText = moto.cc;
+            document.getElementById('mHp').innerText = moto.hp;
+            document.getElementById('mTorque').innerText = moto.torque;
+            document.getElementById('mDesc').innerText = moto.desc;
+            
+            // Enlace de WhatsApp personalizado
+            document.getElementById('mWsLink').href = `https://wa.me/573000000000?text=Hola,%20me%20interesa%20obtener%20información%20sobre%20la%20${encodeURIComponent(moto.title)}`;
+
+            document.getElementById('catalogView').style.display = 'none';
+            document.getElementById('detailView').style.display = 'block';
+        }
+
+        // Función para regresar a la lista de tarjetas
+        function closeDetail() {
+            document.getElementById('detailView').style.display = 'none';
+            document.getElementById('catalogView').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>
