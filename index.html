@@ -69,7 +69,6 @@
             margin-bottom: 20px;
         }
 
-        /* VISTA 1: Lista de Motos */
         .catalog-grid {
             display: flex;
             flex-direction: column;
@@ -110,7 +109,6 @@
             color: var(--text-main);
         }
 
-        /* VISTA 2: Detalle de la Moto */
         .detail-view {
             display: none;
             animation: fadeIn 0.4s ease-out;
@@ -210,10 +208,6 @@
             transition: transform 0.2s ease;
         }
 
-        .btn-ws:active {
-            transform: scale(0.98);
-        }
-
         footer {
             margin-top: 25px;
             text-align: center;
@@ -230,24 +224,23 @@
 <body>
 
     <div class="container">
-        
         <div id="catalogView">
             <h1>Catálogo de Motos</h1>
             <p class="section-title">Motos por el momento</p>
 
             <div class="catalog-grid">
                 <div class="moto-card" onclick="openDetail('cb125f')">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Honda_CB125F_White_2015.png/640px-Honda_CB125F_White_2015.png" alt="Honda CB 125F">
+                    <img src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=400&auto=format&fit=crop" alt="Honda CB 125F">
                     <h3>CB 125F</h3>
                 </div>
 
                 <div class="moto-card" onclick="openDetail('nkd125')">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Motorcycle_icon.png/640px-Motorcycle_icon.png" alt="AKT NKD 125">
+                    <img src="https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=400&auto=format&fit=crop" alt="AKT NKD 125">
                     <h3>NKD 125</h3>
                 </div>
 
                 <div class="moto-card" onclick="openDetail('boxer125')">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Bajaj_Pulsar_135LS.png/640px-Bajaj_Pulsar_135LS.png" alt="Bajaj Boxer CT 125">
+                    <img src="https://images.unsplash.com/photo-1599819811279-d5ad9cccf838?w=400&auto=format&fit=crop" alt="Bajaj Boxer CT 125">
                     <h3>BOXER CT 125</h3>
                 </div>
             </div>
@@ -285,7 +278,6 @@
         <footer>
             Desarrollado por MigueProgrammer - © 2026
         </footer>
-
     </div>
 
     <script>
@@ -296,7 +288,7 @@
                 cc: '124.7 cc',
                 hp: '8.41 HP @ 7500 RPM',
                 torque: '9.6 Nm @ 5000 RPM',
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Honda_CB125F_White_2015.png/640px-Honda_CB125F_White_2015.png',
+                image: 'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=600&auto=format&fit=crop',
                 desc: 'Excelente opción urbana con gran eficiencia de combustible, diseño deportivo aerodinámico y el respaldo de durabilidad característico de Honda.'
             },
             'nkd125': {
@@ -305,7 +297,7 @@
                 cc: '124 cc',
                 hp: '10.34 HP @ 8000 RPM',
                 torque: '9.3 Nm @ 7000 RPM',
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Motorcycle_icon.png/640px-Motorcycle_icon.png',
+                image: 'https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=600&auto=format&fit=crop',
                 desc: 'La moto liviana más vendida para trabajo y ciudad. Destaca por su excelente relación peso-potencia, repuestos económicos y agilidad en el tráfico.'
             },
             'boxer125': {
@@ -314,7 +306,7 @@
                 cc: '124.4 cc',
                 hp: '9.8 HP @ 7500 RPM',
                 torque: '10.9 Nm @ 5500 RPM',
-                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Bajaj_Pulsar_135LS.png/640px-Bajaj_Pulsar_135LS.png',
+                image: 'https://images.unsplash.com/photo-1599819811279-d5ad9cccf838?w=600&auto=format&fit=crop',
                 desc: 'Reina del trabajo pesado y ahorro de gasolina. Chasis robusto, suspensión reforzada para carga y un motor de alto rendimiento diseñado para jornadas duras.'
             }
         };
