@@ -69,7 +69,7 @@
             margin-bottom: 20px;
         }
 
-        /* VISTA 1: Lista de Motos (Solo Foto y Nombre) */
+        /* VISTA 1: Lista de Motos */
         .catalog-grid {
             display: flex;
             flex-direction: column;
@@ -110,7 +110,7 @@
             color: var(--text-main);
         }
 
-        /* VISTA 2: Detalle de la Moto (Oculto por defecto) */
+        /* VISTA 2: Detalle de la Moto */
         .detail-view {
             display: none;
             animation: fadeIn 0.4s ease-out;
@@ -231,27 +231,33 @@
 
     <div class="container">
         
+        <!-- VISTA DEL CATÁLOGO DE MOTOS -->
         <div id="catalogView">
             <h1>Catálogo de Motos</h1>
             <p class="section-title">Motos por el momento</p>
 
             <div class="catalog-grid">
+                <!-- Honda CB 125F -->
                 <div class="moto-card" onclick="openDetail('cb125f')">
-    <img src="71028.png" alt="CB 125F">
-    <h3>CB 125F</h3>
-</div>
+                    <img src="./Honda.png" alt="Honda CB 125F">
+                    <h3>CB 125F</h3>
+                </div>
 
-<div class="moto-card" onclick="openDetail('nkd125')">
-    <img src="71029.jpg" alt="NKD 125">
-    <h3>NKD 125</h3>
-</div>
+                <!-- AKT NKD 125 -->
+                <div class="moto-card" onclick="openDetail('nkd125')">
+                    <img src="./Nkd.jpg" alt="AKT NKD 125">
+                    <h3>NKD 125</h3>
+                </div>
 
-<div class="moto-card" onclick="openDetail('boxer125')">
-    <img src="71030.jpg" alt="BOXER CT 125">
-    <h3>BOXER CT 125</h3>
-</div>
-                
+                <!-- Bajaj Boxer CT 125 -->
+                <div class="moto-card" onclick="openDetail('boxer125')">
+                    <img src="./Boxer.jpeg" alt="Bajaj Boxer CT 125">
+                    <h3>BOXER CT 125</h3>
+                </div>
+            </div>
+        </div>
 
+        <!-- VISTA DE DETALLE DE LA MOTO -->
         <div id="detailView" class="detail-view">
             <button class="btn-back" onclick="closeDetail()">← Volver al catálogo</button>
             
@@ -288,38 +294,35 @@
     </div>
 
     <script>
-        // Datos técnicos reales asociados a las imágenes de tu repositorio
         const motosData = {
-    'cb125f': {
-        title: 'Honda CB 125F',
-        price: '$6.800.000 COP',
-        cc: '124.7 cc',
-        hp: '8.41 HP @ 7500 RPM',
-        torque: '9.6 Nm @ 5000 RPM',
-        image: '71028.png',
-        desc: 'Excelente opción urbana con gran eficiencia de combustible, diseño deportivo aerodinámico y el respaldo de durabilidad característico de Honda.'
-    },
-    'nkd125': {
-        title: 'AKT NKD 125',
-        price: '$5.490.000 COP',
-        cc: '124 cc',
-        hp: '10.34 HP @ 8000 RPM',
-        torque: '9.3 Nm @ 7000 RPM',
-        image: '71029.jpg',
-        desc: 'La moto liviana más vendida para trabajo y ciudad. Destaca por su excelente relación peso-potencia, repuestos económicos y agilidad en el tráfico.'
-    },
-    'boxer125': {
-        title: 'Bajaj Boxer CT 125',
-        price: '$5.890.000 COP',
-        cc: '124.4 cc',
-        hp: '9.8 HP @ 7500 RPM',
-        torque: '10.9 Nm @ 5500 RPM',
-        image: '71030.jpg',
-        desc: 'Reina del trabajo pesado y ahorro de gasolina. Chasis robusto, suspensión reforzada para carga y un motor de alto rendimiento diseñado para jornadas duras.'
-    }
-};
-        
-        
+            'cb125f': {
+                title: 'Honda CB 125F',
+                price: '$6.800.000 COP',
+                cc: '124.7 cc',
+                hp: '8.41 HP @ 7500 RPM',
+                torque: '9.6 Nm @ 5000 RPM',
+                image: './Honda.png',
+                desc: 'Excelente opción urbana con gran eficiencia de combustible, diseño deportivo aerodinámico y el respaldo de durabilidad característico de Honda.'
+            },
+            'nkd125': {
+                title: 'AKT NKD 125',
+                price: '$5.490.000 COP',
+                cc: '124 cc',
+                hp: '10.34 HP @ 8000 RPM',
+                torque: '9.3 Nm @ 7000 RPM',
+                image: './Nkd.jpg',
+                desc: 'La moto liviana más vendida para trabajo y ciudad. Destaca por su excelente relación peso-potencia, repuestos económicos y agilidad en el tráfico.'
+            },
+            'boxer125': {
+                title: 'Bajaj Boxer CT 125',
+                price: '$5.890.000 COP',
+                cc: '124.4 cc',
+                hp: '9.8 HP @ 7500 RPM',
+                torque: '10.9 Nm @ 5500 RPM',
+                image: './Boxer.jpeg',
+                desc: 'Reina del trabajo pesado y ahorro de gasolina. Chasis robusto, suspensión reforzada para carga y un motor de alto rendimiento diseñado para jornadas duras.'
+            }
+        };
 
         function openDetail(motoKey) {
             const moto = motosData[motoKey];
